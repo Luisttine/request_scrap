@@ -14,7 +14,7 @@
         fetch('https://ipapi.co/json/')
             .then(results => results.json())
             .then(data => {
-                const ipAddress = data;
+                const ipAddress = data.ip;
 
                 // Enviar email usando EmailJS
                 const templateParams = {
